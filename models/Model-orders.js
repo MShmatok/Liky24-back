@@ -6,10 +6,6 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const ordersSchema = new Schema(
   {
-    shopId: {
-      type: String,
-      required: [true, "Set shop for orders"],
-    },
     name: {
       type: String,
       required: [true, "Set name for orders"],
@@ -28,7 +24,7 @@ const ordersSchema = new Schema(
       required: [true, "Set address for orders"],
     },
     order: {
-      type: Object,
+      type: Array,
       required: [true, "Set order for orders"],
     },
   },
@@ -40,9 +36,6 @@ ordersSchema.post("save", handlerSaveError);
 
 // **************** Joi Schema ****************
 export const ordersSchemaJoi = Joi.object({
-  shopId: Joi.string().required().min(3).max(500).messages({
-    "any.required": `missing required shopId field`,
-  }),
   name: Joi.string().required().min(3).max(500).messages({
     "any.required": `missing required name field`,
   }),
@@ -58,7 +51,7 @@ export const ordersSchemaJoi = Joi.object({
   address: Joi.string().required().min(3).max(100).messages({
     "any.required": `missing required shop field`,
   }),
-  order: Joi.object().required().messages({
+  order: Joi.array().required().messages({
     "any.required": `missing required order field`,
   }),
 });
