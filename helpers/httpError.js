@@ -2,7 +2,7 @@ const listError = {
   400: "Bad Request",
   401: "Unauthorized",
   403: "Firbidden",
-  404: "Not Found -3",
+  404: "Not Found",
   409: "Conflict",
 };
 
